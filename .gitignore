@@ -5,3 +5,6 @@ target
 node_modules
 test-ledger
 .yarn
+chat.txt
+multisig_plan.md
+details.md
