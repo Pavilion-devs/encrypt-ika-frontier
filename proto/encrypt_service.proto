@@ -1,0 +1,44 @@
+// Copyright (c) dWallet Labs, Ltd.
+// SPDX-License-Identifier: BSD-3-Clause-Clear
+
+syntax = "proto3";
+
+package encrypt.v1;
+
+enum Chain {
+  SOLANA = 0;
+}
+
+service EncryptService {
+  rpc CreateInput(CreateInputRequest) returns (CreateInputResponse);
+  rpc ReadCiphertext(ReadCiphertextRequest) returns (ReadCiphertextResponse);
+}
+
+message EncryptedInput {
+  bytes ciphertext_bytes = 1;
+  uint32 fhe_type = 2;
+}
+
+message CreateInputRequest {
+  Chain chain = 1;
+  repeated EncryptedInput inputs = 2;
+  bytes proof = 3;
+  bytes authorized = 4;
+  bytes network_encryption_public_key = 5;
+}
+
+message CreateInputResponse {
+  repeated bytes ciphertext_identifiers = 1;
+}
+
+message ReadCiphertextRequest {
+  bytes message = 1;
+  bytes signature = 2;
+  bytes signer = 3;
+}
+
+message ReadCiphertextResponse {
+  bytes value = 1;
+  uint32 fhe_type = 2;
+  bytes digest = 3;
+}

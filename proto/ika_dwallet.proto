@@ -1,0 +1,44 @@
+// Copyright (c) dWallet Labs, Ltd.
+// SPDX-License-Identifier: BSD-3-Clause-Clear
+
+// gRPC dWallet Signing Service -- single SubmitTransaction RPC.
+// Request type is inside the BCS-serialized signed payload (DWalletRequest enum variant).
+
+syntax = "proto3";
+package ika.dwallet.v1;
+
+service DWalletService {
+  rpc SubmitTransaction(UserSignedRequest) returns (TransactionResponse);
+  rpc GetPresigns(GetPresignsRequest) returns (GetPresignsResponse);
+  rpc GetPresignsForDWallet(GetPresignsForDWalletRequest) returns (GetPresignsResponse);
+}
+
+message UserSignedRequest {
+  bytes user_signature = 1;
+  bytes signed_request_data = 2;
+}
+
+message TransactionResponse {
+  bytes response_data = 1;
+}
+
+message GetPresignsRequest {
+  bytes user_pubkey = 1;
+}
+
+message GetPresignsForDWalletRequest {
+  bytes user_pubkey = 1;
+  bytes dwallet_id = 2;
+}
+
+message GetPresignsResponse {
+  repeated PresignInfo presigns = 1;
+}
+
+message PresignInfo {
+  bytes presign_id = 1;
+  bytes dwallet_id = 2;
+  uint32 curve = 3;
+  uint32 signature_scheme = 4;
+  uint64 epoch = 5;
+}

@@ -1,0 +1,36 @@
+{
+  "license": "ISC",
+  "scripts": {
+    "bid": "node --import tsx scripts/bid-client.ts",
+    "broadcast": "node --import tsx scripts/broadcaster.ts",
+    "finalize-auction": "node --import tsx scripts/finalize-auction.ts",
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "request-resolution-decryption": "node --import tsx scripts/request-resolution-decryption.ts",
+    "resolve": "node --import tsx scripts/resolve-auction.ts",
+    "watcher": "node --import tsx scripts/watcher.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.0",
+    "@grpc/grpc-js": "^1.14.1",
+    "@grpc/proto-loader": "^0.8.0",
+    "@mysten/bcs": "^1.8.1",
+    "@noble/hashes": "^1.8.0",
+    "@solana/web3.js": "^1.98.4",
+    "@bitcoinerlab/secp256k1": "^1.2.0",
+    "bitcoinjs-lib": "^7.0.0",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "ts-mocha": "^10.0.0",
+    "tsx": "^4.20.5",
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "typescript": "^5.7.3",
+    "prettier": "^2.6.2"
+  }
+}
